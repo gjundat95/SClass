@@ -6,7 +6,7 @@ package com.tinhngo.sclassandroid.API;
 
 public class APIConfig {
 
-    public static final String BASE_URL = "http://54.169.170.247/";
+    public static final String BASE_URL = "http://45.55.77.182:8888/";
 
     public static String getBaseUrl(){
         return BASE_URL;

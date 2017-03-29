@@ -9,16 +9,38 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseModel {
 
-    @SerializedName("success")
+    @SerializedName("status")
     @Expose
-    private Success success;
+    private String status;
+    @SerializedName("data")
+    @Expose
+    private Object data;
+    @SerializedName("message")
+    @Expose
+    private Object message;
 
-    public Success getSuccess() {
-        return success;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSuccess(Success success) {
-        this.success = success;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Object getMessage() {
+        return message;
+    }
+
+    public void setMessage(Object message) {
+        this.message = message;
     }
 
 }

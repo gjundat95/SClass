@@ -22,14 +22,14 @@ import retrofit2.http.Query;
 
 public interface ISClassAPI {
 
-    @GET("api/check")
+    @GET("api/v2.0/check")
     Call<ResponseModel> checkToken();
 
-    @POST("register")
+    @POST("api/v2.0/register")
     @Headers({"Content-Type:application/json"})
     Call<ResponseModel> register(@Body RegisterModel registerModel);
 
-    @POST("api/login")
+    @POST("api/v2.0/login")
     @FormUrlEncoded
     Call<ResponseModel> login(
             @Query("token") String token,

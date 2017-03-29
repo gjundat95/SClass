@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/about"
+            android:title="About"
+            android:icon="@drawable/sclass"/>
+        <item
+            android:id="@+id/myclass"
+            android:title="My Class"
+            android:icon="@drawable/sclass"/>
+        <item
+            android:id="@+id/exit"
+            android:title="Exit"
+            android:icon="@drawable/sclass"/>
+    </group>
+</menu>

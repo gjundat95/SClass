@@ -1,10 +1,13 @@
 package com.tinhngo.sclassandroid.Presenter.Login;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.tinhngo.sclassandroid.API.ISClassAPI;
+import com.tinhngo.sclassandroid.Common.TiSharedPreferences;
 import com.tinhngo.sclassandroid.Model.ResponseModel;
 import com.tinhngo.sclassandroid.View.Activity.Login.ILoginView;
+import com.tinhngo.sclassandroid.View.Activity.Main.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +45,7 @@ public class PLoginPresenter implements ILoginPresenter {
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){
                     ResponseModel responseModel = response.body();
-                    token = responseModel.getSuccess().getToken();
+                    token = responseModel.getData().toString();
                     checkLogin();
                 }else {
                     iLoginView.loginFail("Not check token");
@@ -63,9 +66,18 @@ public class PLoginPresenter implements ILoginPresenter {
                 if(response.isSuccessful()){
                     if(response.isSuccessful()){
                         ResponseModel responseModel = response.body();
-                        iLoginView.loginSuccess();
+                        if(responseModel.getStatus().equals("success")){
+                            // save token
+                            String tokenLogin = responseModel.getData().toString();
+                            if(!tokenLogin.isEmpty()){
+                                TiSharedPreferences.saveSharedPreferences(mContext,"Token_Login",tokenLogin);
+                                iLoginView.loginSuccess();
+                            }
+                        }else {
+                            iLoginView.loginFail(responseModel.getMessage().toString());
+                        }
                     }else {
-                        iLoginView.loginFail("Please check username and password");
+                        iLoginView.loginFail("Please check server");
                     }
                 }else {
                     iLoginView.loginFail(response.errorBody().toString());

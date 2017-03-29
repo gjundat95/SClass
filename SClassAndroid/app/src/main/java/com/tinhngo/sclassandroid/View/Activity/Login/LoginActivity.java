@@ -1,5 +1,6 @@
 package com.tinhngo.sclassandroid.View.Activity.Login;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -7,6 +8,7 @@ import android.widget.Toast;
 
 import com.tinhngo.sclassandroid.Presenter.Login.PLoginPresenter;
 import com.tinhngo.sclassandroid.R;
+import com.tinhngo.sclassandroid.View.Activity.Main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,6 +21,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        testData();
     }
 
     private PLoginPresenter pLoginPresenter = new PLoginPresenter(this,this);
@@ -46,11 +49,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void loginSuccess() {
-        Toast.makeText(
-                LoginActivity.this,
-                "Login Success",
-                Toast.LENGTH_LONG
-        ).show();
+        Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(mainActivity);
+        finish();
     }
 
     @Override
@@ -60,6 +61,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 "Login Fail: "+message,
                 Toast.LENGTH_LONG
         ).show();
+    }
+
+    public void testData(){
+        userName.setText("admin@gmail.com");
+        password.setText("123456");
     }
 
 }
