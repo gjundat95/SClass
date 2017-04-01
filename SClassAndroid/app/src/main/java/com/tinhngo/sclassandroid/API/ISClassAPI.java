@@ -20,14 +20,31 @@ import retrofit2.http.Query;
  * Created by tinhngo on 3/25/17.
  */
 
-public interface ISClassAPI {
+public interface ISClassApi {
 
     @GET("api/v2.0/check")
     Call<ResponseModel> checkToken();
 
     @POST("api/v2.0/register")
-    @Headers({"Content-Type:application/json"})
-    Call<ResponseModel> register(@Body RegisterModel registerModel);
+    @FormUrlEncoded
+    Call<ResponseModel> register(
+            @Query("token") String token,
+            @Field("first_name") String firstName,
+            @Field("last_name") String lastName,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("repassword") String repassword,
+            @Field("sex") String sex,
+            @Field("phone") String phone,
+            @Field("birthday") String birthday,
+            @Field("description") String description,
+            @Field("address") String address,
+            @Field("company") String company,
+            @Field("relationships") String relationships,
+            @Field("phone_parent") String phoneParent,
+            @Field("token") String tokenNew
+
+    );
 
     @POST("api/v2.0/login")
     @FormUrlEncoded
@@ -38,15 +55,15 @@ public interface ISClassAPI {
     );
 
     class Factory{
-        public static ISClassAPI service;
-        public static ISClassAPI getInstance(){
+        public static ISClassApi service;
+        public static ISClassApi getInstance(){
             if(service == null){
                 Gson gson = new GsonBuilder().setLenient().create();
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(APIConfig.getBaseUrl())
+                        .baseUrl(ConfigApi.getBaseUrl())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
-                service = retrofit.create(ISClassAPI.class);
+                service = retrofit.create(ISClassApi.class);
                 return service;
 
             } else {

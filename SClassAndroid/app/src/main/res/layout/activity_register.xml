@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorBackGroundLogin"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="45dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <ImageView android:src="@drawable/sclass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription=""
+            tools:ignore="ContentDescription" />
+
+        <!-- First Name -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/first_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:hint="FirstName"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif"
+            android:background="@drawable/radius_edittext"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Last Name -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/last_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:hint="LastName"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif"
+            android:background="@drawable/radius_edittext"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Email -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:hint="Email"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif"
+            android:background="@drawable/radius_edittext"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+
+        <!-- Password Label -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Password Label -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/repassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="textPassword"
+            android:hint="RePassword"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Sex Label -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/sex"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="numberSigned"
+            android:hint="Sex"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Phone -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:hint="Phone"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Birthday -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/birthday"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:hint="Birthday"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Description -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:hint="Description"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Address -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:hint="Address"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- Company -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/company"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:hint="Company"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- relationships -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/relationships"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="numberSigned"
+            android:hint="Relationships"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+        <!-- PhoneParent -->
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/phoneparent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:hint="PhoneParent"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@drawable/selector_edittext"
+            android:background="@drawable/radius_edittext"
+            android:textCursorDrawable="@drawable/cursor_edittext"
+            />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/btn_register"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="Register"
+            android:background="@drawable/radius_button"
+            />
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:id="@+id/link_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Have account yet? Login"
+            android:gravity="center"
+            android:textSize="16dip"
+            tools:ignore="HardcodedText,SpUsage" />
+
+    </LinearLayout>
+</ScrollView>

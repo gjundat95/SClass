@@ -1,13 +1,11 @@
 package com.tinhngo.sclassandroid.Presenter.Login;
 
 import android.content.Context;
-import android.content.Intent;
 
-import com.tinhngo.sclassandroid.API.ISClassAPI;
+import com.tinhngo.sclassandroid.API.ISClassApi;
 import com.tinhngo.sclassandroid.Common.TiSharedPreferences;
 import com.tinhngo.sclassandroid.Model.ResponseModel;
 import com.tinhngo.sclassandroid.View.Activity.Login.ILoginView;
-import com.tinhngo.sclassandroid.View.Activity.Main.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +38,7 @@ public class PLoginPresenter implements ILoginPresenter {
     }
 
     private void checkToken(){
-        ISClassAPI.Factory.getInstance().checkToken().enqueue(new Callback<ResponseModel>() {
+        ISClassApi.Factory.getInstance().checkToken().enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){
@@ -60,7 +58,7 @@ public class PLoginPresenter implements ILoginPresenter {
     }
 
     private void checkLogin(){
-        ISClassAPI.Factory.getInstance().login(token,userName,password).enqueue(new Callback<ResponseModel>() {
+        ISClassApi.Factory.getInstance().login(token,userName,password).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){

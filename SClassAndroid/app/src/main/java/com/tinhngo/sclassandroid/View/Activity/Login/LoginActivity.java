@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tinhngo.sclassandroid.Presenter.Login.PLoginPresenter;
 import com.tinhngo.sclassandroid.R;
 import com.tinhngo.sclassandroid.View.Activity.Main.MainActivity;
+import com.tinhngo.sclassandroid.View.Activity.Register.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,25 +28,27 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private PLoginPresenter pLoginPresenter = new PLoginPresenter(this,this);
 
-    @BindView(R.id.input_user_name)
-    EditText userName;
-    @BindView(R.id.input_password)
-    EditText password;
+    @BindView(R.id.input_user_name) EditText teUserName;
+    @BindView(R.id.input_password) EditText tePassword;
+    @BindView(R.id.link_register) TextView tvRegister;
+
+    private String userName,password;
 
     @OnClick(R.id.btn_login)
     public void loginClick(){
-        if(!userName.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
+        if(validate()){
             pLoginPresenter.login(
-                    userName.getText().toString(),
-                    password.getText().toString()
+                    userName,
+                    password
             );
-        }else {
-            Toast.makeText(
-                    LoginActivity.this,
-                    "Please, enter username and password",
-                    Toast.LENGTH_LONG
-                    ).show();
         }
+    }
+
+    @OnClick(R.id.link_register)
+    public void linkRegisterClick(){
+        Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(register);
+        finish();
     }
 
     @Override
@@ -63,9 +67,30 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         ).show();
     }
 
+    private boolean validate(){
+        boolean isValid = true;
+        userName = teUserName.getText().toString();
+        password = tePassword.getText().toString();
+
+        if(userName.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(userName).matches()){
+            teUserName.setError("Please, enter email");
+            isValid = false;
+        }else {
+            teUserName.setError(null);
+        }
+        if(password.isEmpty()){
+            tePassword.setError("Please, enter password");
+            isValid = false;
+        }else {
+            tePassword.setError(null);
+        }
+
+        return isValid;
+    }
+
     public void testData(){
-        userName.setText("admin@gmail.com");
-        password.setText("123456");
+        teUserName.setText("admin@gmail.com");
+        tePassword.setText("123456");
     }
 
 }
