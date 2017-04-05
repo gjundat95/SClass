@@ -1,5 +1,8 @@
 package com.tinhngo.sclassandroid.Presenter.Register;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.tinhngo.sclassandroid.API.ISClassApi;
 import com.tinhngo.sclassandroid.Model.RegisterModel;
 import com.tinhngo.sclassandroid.Model.ResponseModel;
@@ -72,9 +75,15 @@ public class PRegisterPresenter implements IRegisterPresenter {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){
-
+                    ResponseModel responseModel = response.body();
+                    if(responseModel.getStatus().equals("success")){
+                        Log.d("PRegister","Register thanhh cong");
+                    }else {
+                        iRegisterView.fail("Register Error");
+                    }
                 }else {
                     iRegisterView.fail("Error: "+response.errorBody()+response.message());
+                    Log.d("PRegister",""+response.raw()+response.message());
                 }
             }
 

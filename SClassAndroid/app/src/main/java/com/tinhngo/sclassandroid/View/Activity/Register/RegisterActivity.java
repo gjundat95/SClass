@@ -187,7 +187,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         etPassword.setText("123456");
         etRePassword.setText("123456");
         etSex.setText("1");
-        etPhone.setText("202020202020");
+        etPhone.setText("09747682980");
         etBirthday.setText("01011995");
         etDescription.setText("No Comment");
         etAddress.setText("Thai Nguyen");

@@ -1,5 +1,6 @@
 package com.tinhngo.sclassandroid.View.Activity.Main;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tinhngo.sclassandroid.R;
+import com.tinhngo.sclassandroid.View.Activity.MyClass.MyClassActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"About",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.myclass:
+                        Intent myClass = new Intent(MainActivity.this, MyClassActivity.class);
+                        startActivity(myClass);
                     case R.id.exit:
                         finish();
                         drawerLayout.closeDrawers();

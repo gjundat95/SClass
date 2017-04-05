@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     public void testData(){
-        teUserName.setText("admin@gmail.com");
+        teUserName.setText("gjundat95@gmail.com");
         tePassword.setText("123456");
     }
 

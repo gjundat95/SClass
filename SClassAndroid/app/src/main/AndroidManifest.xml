@@ -24,7 +24,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.Activity.Register.RegisterActivity"
-            android:theme="@style/AppTheme.Login"
+            android:theme="@style/AppTheme.Login" />
+        <activity
+            android:name=".View.Activity.MyClass.MyClassActivity"
+            android:theme="@style/AppTheme.MyClass"
             />
     </application>
 
