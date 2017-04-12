@@ -9,4 +9,5 @@ public interface ILoginPresenter {
     void login(String userName, String password);
     void loginSuccess();
     void loginFail(String message);
+
 }

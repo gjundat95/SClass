@@ -9,43 +9,63 @@ import com.google.gson.annotations.SerializedName;
 
 public class RegisterModel {
 
-    private String firstName;
+    @SerializedName("userId")
+    @Expose
+    private String userId;
+    @SerializedName("lastName")
+    @Expose
     private String lastName;
+    @SerializedName("firstName")
+    @Expose
+    private String firstName;
+    @SerializedName("email")
+    @Expose
     private String email;
-    private String sex;
-    private String phone;
-    private String birthday;
-    private String description;
-    private String address;
-    private String company;
-    private String relationships;
-    private String phoneParent;
+    @SerializedName("password")
+    @Expose
     private String password;
+    @SerializedName("sex")
+    @Expose
+    private String sex;
+    @SerializedName("phoneNumber")
+    @Expose
+    private String phoneNumber;
+    @SerializedName("birthday")
+    @Expose
+    private String birthday;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("address")
+    @Expose
+    private String address;
+    @SerializedName("avatar")
+    @Expose
+    private String avatar;
 
     public RegisterModel() {
     }
 
-    public RegisterModel(String firstName, String lastName, String email, String sex, String phone, String birthday, String description, String address, String company, String relationships, String phoneParent, String password) {
-        this.firstName = firstName;
+    public RegisterModel(String userId, String lastName, String firstName, String email, String password, String sex, String phoneNumber, String birthday, String description, String address, String avatar) {
+        this.userId = userId;
         this.lastName = lastName;
+        this.firstName = firstName;
         this.email = email;
+        this.password = password;
         this.sex = sex;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.description = description;
         this.address = address;
-        this.company = company;
-        this.relationships = relationships;
-        this.phoneParent = phoneParent;
-        this.password = password;
+        this.avatar = avatar;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getLastName() {
@@ -56,12 +76,28 @@ public class RegisterModel {
         this.lastName = lastName;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSex() {
@@ -72,12 +108,12 @@ public class RegisterModel {
         this.sex = sex;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getBirthday() {
@@ -104,36 +140,24 @@ public class RegisterModel {
         this.address = address;
     }
 
-    public String getCompany() {
-        return company;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getRelationships() {
-        return relationships;
-    }
-
-    public void setRelationships(String relationships) {
-        this.relationships = relationships;
-    }
-
-    public String getPhoneParent() {
-        return phoneParent;
-    }
-
-    public void setPhoneParent(String phoneParent) {
-        this.phoneParent = phoneParent;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean isMale(){
+        boolean isMale = true;
+        try {
+            if(Integer.parseInt(getSex()) == 1){
+                isMale = false;
+            }
+        }catch (Exception ex){
+            isMale = false;
+        }
+        return isMale;
     }
 
 }

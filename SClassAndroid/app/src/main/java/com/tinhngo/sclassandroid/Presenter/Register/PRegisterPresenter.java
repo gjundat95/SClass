@@ -29,67 +29,32 @@ public class PRegisterPresenter implements IRegisterPresenter {
     @Override
     public void register(RegisterModel registerModel) {
         this.registerModel = registerModel;
-        checkToken();
-
+        registerServer();
     }
 
-    private void checkToken(){
-        ISClassApi.Factory.getInstance().checkToken().enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if(response.isSuccessful()){
-                    ResponseModel responseModel = response.body();
-                    token = responseModel.getData().toString();
-                    registerServer();
-                }else {
-                    iRegisterView.fail("Not check token");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                iRegisterView.fail(t.getLocalizedMessage());
-            }
-        });
-    }
 
     private void registerServer(){
         ISClassApi.Factory.getInstance().register(
-                token,
-                registerModel.getFirstName(),
-                registerModel.getLastName(),
-                registerModel.getEmail(),
-                registerModel.getPassword(),
-                registerModel.getPassword(),
-                registerModel.getSex(),
-                registerModel.getPhone(),
-                registerModel.getBirthday(),
-                registerModel.getDescription(),
-                registerModel.getAddress(),
-                registerModel.getCompany(),
-                registerModel.getRelationships(),
-                registerModel.getPhoneParent(),
-                token
+              registerModel
 
         ).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){
                     ResponseModel responseModel = response.body();
-                    if(responseModel.getStatus().equals("success")){
-                        Log.d("PRegister","Register thanhh cong");
+                    if(responseModel.isSuccess()){
+                        iRegisterView.success();
                     }else {
-                        iRegisterView.fail("Register Error");
+                        iRegisterView.fail("Error: "+responseModel.getMessage());
                     }
                 }else {
                     iRegisterView.fail("Error: "+response.errorBody()+response.message());
-                    Log.d("PRegister",""+response.raw()+response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-
+                iRegisterView.fail("Error: "+t.getLocalizedMessage());
             }
         });
     }

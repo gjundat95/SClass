@@ -26,8 +26,14 @@
             android:name=".View.Activity.Register.RegisterActivity"
             android:theme="@style/AppTheme.Login" />
         <activity
+            android:name=".View.Activity.MyClassDetail.MyClassDetailActivity"
+            android:theme="@style/AppTheme.MyClassDetail" />
+        <activity
             android:name=".View.Activity.MyClass.MyClassActivity"
-            android:theme="@style/AppTheme.MyClass"
+            android:theme="@style/AppTheme.MyClass" />
+        <activity
+            android:name=".View.Activity.MyClassEdit.MyClassEditActivity"
+            android:theme="@style/AppTheme.MyClassDetail"
             />
     </application>
 

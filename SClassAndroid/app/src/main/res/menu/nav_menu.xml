@@ -10,6 +10,10 @@
             android:title="My Class"
             android:icon="@drawable/sclass"/>
         <item
+            android:id="@+id/logout"
+            android:title="Logout"
+            android:icon="@drawable/sclass"/>
+        <item
             android:id="@+id/exit"
             android:title="Exit"
             android:icon="@drawable/sclass"/>

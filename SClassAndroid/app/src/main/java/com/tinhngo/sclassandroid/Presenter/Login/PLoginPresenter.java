@@ -1,11 +1,14 @@
 package com.tinhngo.sclassandroid.Presenter.Login;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.tinhngo.sclassandroid.API.ISClassApi;
 import com.tinhngo.sclassandroid.Common.TiSharedPreferences;
+import com.tinhngo.sclassandroid.Model.LoginModel;
 import com.tinhngo.sclassandroid.Model.ResponseModel;
 import com.tinhngo.sclassandroid.View.Activity.Login.ILoginView;
+import com.tinhngo.sclassandroid.View.Activity.Main.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,38 +36,17 @@ public class PLoginPresenter implements ILoginPresenter {
     public void login(String userName, String password) {
         this.userName = userName;
         this.password = password;
-        checkToken();
-
+        loginServer();
     }
 
-    private void checkToken(){
-        ISClassApi.Factory.getInstance().checkToken().enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if(response.isSuccessful()){
-                    ResponseModel responseModel = response.body();
-                    token = responseModel.getData().toString();
-                    checkLogin();
-                }else {
-                    iLoginView.loginFail("Not check token");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                iLoginView.loginFail(t.getLocalizedMessage());
-            }
-        });
-    }
-
-    private void checkLogin(){
-        ISClassApi.Factory.getInstance().login(token,userName,password).enqueue(new Callback<ResponseModel>() {
+    private void loginServer(){
+        ISClassApi.Factory.getInstance().login(new LoginModel(userName,password)).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){
                     if(response.isSuccessful()){
                         ResponseModel responseModel = response.body();
-                        if(responseModel.getStatus().equals("success")){
+                        if(responseModel.isSuccess()){
                             // save token
                             String tokenLogin = responseModel.getData().toString();
                             if(!tokenLogin.isEmpty()){
@@ -72,19 +54,19 @@ public class PLoginPresenter implements ILoginPresenter {
                                 iLoginView.loginSuccess();
                             }
                         }else {
-                            iLoginView.loginFail(responseModel.getMessage().toString());
+                            iLoginView.loginFail("Error: "+responseModel.getMessage().toString());
                         }
                     }else {
-                        iLoginView.loginFail("Please check server");
+                        iLoginView.loginFail("Error: "+response.errorBody());
                     }
                 }else {
-                    iLoginView.loginFail(response.errorBody().toString());
+                    iLoginView.loginFail("Error: "+response.errorBody().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                iLoginView.loginFail(t.getLocalizedMessage());
+                iLoginView.loginFail("Error: "+t.getLocalizedMessage());
             }
         });
     }

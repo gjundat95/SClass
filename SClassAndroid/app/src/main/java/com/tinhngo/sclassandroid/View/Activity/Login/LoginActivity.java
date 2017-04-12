@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tinhngo.sclassandroid.Common.ProgressDialogLoading;
+import com.tinhngo.sclassandroid.Common.TiSharedPreferences;
 import com.tinhngo.sclassandroid.Presenter.Login.PLoginPresenter;
 import com.tinhngo.sclassandroid.R;
 import com.tinhngo.sclassandroid.View.Activity.Main.MainActivity;
@@ -23,6 +25,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        checkLogin();
         testData();
     }
 
@@ -33,10 +36,21 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @BindView(R.id.link_register) TextView tvRegister;
 
     private String userName,password;
+    private ProgressDialogLoading loading = new ProgressDialogLoading(this,"");
+
+    private void checkLogin(){
+        String token = TiSharedPreferences.getSharedPreferences(LoginActivity.this,"Token_Login");
+        if(token != null){
+            Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(mainActivity);
+            finish();
+        }
+    }
 
     @OnClick(R.id.btn_login)
     public void loginClick(){
         if(validate()){
+            loading.showProgressDialog();
             pLoginPresenter.login(
                     userName,
                     password
@@ -53,6 +67,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void loginSuccess() {
+        loading.dismissProgressDialog();
+        Toast.makeText(
+                LoginActivity.this,
+                "Login success",
+                Toast.LENGTH_LONG
+        ).show();
         Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(mainActivity);
         finish();
@@ -60,9 +80,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void loginFail(String message) {
+        loading.dismissProgressDialog();
         Toast.makeText(
                 LoginActivity.this,
-                "Login Fail: "+message,
+                "LoginModel Fail: "+message,
                 Toast.LENGTH_LONG
         ).show();
     }
@@ -89,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     public void testData(){
-        teUserName.setText("gjundat95@gmail.com");
+        teUserName.setText("gjundat@gmail.com");
         tePassword.setText("123456");
     }
 

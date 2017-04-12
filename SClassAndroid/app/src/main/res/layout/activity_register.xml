@@ -177,52 +177,6 @@
             android:background="@drawable/radius_edittext"
             android:textCursorDrawable="@drawable/cursor_edittext"
             />
-        <!-- Company -->
-        <EditText
-            android:layout_margin="5dp"
-            android:id="@+id/company"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="text"
-            android:hint="Company"
-            android:textAlignment="center"
-            android:textStyle="normal"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@drawable/selector_edittext"
-            android:background="@drawable/radius_edittext"
-            android:textCursorDrawable="@drawable/cursor_edittext"
-            />
-        <!-- relationships -->
-        <EditText
-            android:layout_margin="5dp"
-            android:id="@+id/relationships"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="numberSigned"
-            android:hint="Relationships"
-            android:textAlignment="center"
-            android:textStyle="normal"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@drawable/selector_edittext"
-            android:background="@drawable/radius_edittext"
-            android:textCursorDrawable="@drawable/cursor_edittext"
-            />
-        <!-- PhoneParent -->
-        <EditText
-            android:layout_margin="5dp"
-            android:id="@+id/phoneparent"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="number"
-            android:hint="PhoneParent"
-            android:textAlignment="center"
-            android:textStyle="normal"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@drawable/selector_edittext"
-            android:background="@drawable/radius_edittext"
-            android:textCursorDrawable="@drawable/cursor_edittext"
-            />
-
         <android.support.v7.widget.AppCompatButton
             android:layout_marginTop="30dp"
             android:layout_marginLeft="5dp"

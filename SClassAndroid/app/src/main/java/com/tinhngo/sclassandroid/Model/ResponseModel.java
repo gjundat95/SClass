@@ -14,7 +14,7 @@ public class ResponseModel {
     private String status;
     @SerializedName("data")
     @Expose
-    private Object data;
+    private String data;
     @SerializedName("message")
     @Expose
     private Object message;
@@ -27,7 +27,7 @@ public class ResponseModel {
         this.status = status;
     }
 
-    public Object getData() {
+    public String getData() {
         return data;
     }
 
@@ -41,6 +41,19 @@ public class ResponseModel {
 
     public void setMessage(Object message) {
         this.message = message;
+    }
+
+    public boolean isSuccess(){
+        boolean isSuccess = true;
+        try {
+            if(Integer.parseInt(getStatus()) == 0){
+                isSuccess = false;
+            }
+        }catch (Exception ex){
+            isSuccess = false;
+        }
+
+        return isSuccess;
     }
 
 }

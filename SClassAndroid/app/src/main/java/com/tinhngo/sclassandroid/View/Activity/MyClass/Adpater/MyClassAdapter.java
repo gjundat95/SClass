@@ -1,20 +1,32 @@
 package com.tinhngo.sclassandroid.View.Activity.MyClass.Adpater;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.tinhngo.sclassandroid.Model.MyClassModel;
-import com.tinhngo.sclassandroid.Model.Register2Model;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.tinhngo.sclassandroid.Model.RegisterModel;
 import com.tinhngo.sclassandroid.R;
+import com.tinhngo.sclassandroid.View.Activity.MyClassDetail.MyClassDetailActivity;
+import com.tinhngo.sclassandroid.View.Activity.MyClassEdit.MyClassEditActivity;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by ittin on 01/04/2017.
@@ -23,12 +35,13 @@ import butterknife.ButterKnife;
 public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.MyClassViewHolder> {
 
     private LayoutInflater layoutInflater;
-    private Context context;
-    private List<Register2Model.Data.Users.Datum> myClassModels;
+    private Context mContext;
+    private List<RegisterModel> myClasses;
+    public static int index;
 
-    public MyClassAdapter(Context context, List<Register2Model.Data.Users.Datum> myClassModels) {
-        this.context = context;
-        this.myClassModels = myClassModels;
+    public MyClassAdapter(Context context, List<RegisterModel> myClasses) {
+        this.mContext = context;
+        this.myClasses = myClasses;
 
         this.layoutInflater = LayoutInflater.from(context);
 
@@ -41,25 +54,106 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.MyClassV
     }
 
     @Override
-    public void onBindViewHolder(MyClassViewHolder holder, int position) {
-        Register2Model.Data.Users.Datum datum = myClassModels.get(position);
-        holder.tvName.setText(datum.getFirstName() + " " +datum.getLastName());
-        holder.tvDescription.setText(datum.getEmail());
+    public void onBindViewHolder(final MyClassViewHolder holder, final int position) {
+        final RegisterModel myClass = myClasses.get(position);
+        holder.name.setText(myClass.getFirstName() + " " + myClass.getLastName());
+        holder.email.setText(myClass.getEmail());
+        if(myClass.isMale()){
+            holder.avatar.setImageResource(R.drawable.album2);
+        }else {
+            holder.avatar.setImageResource(R.drawable.album11);
+        }
+
+        // loading album cover using Glide library
+//        Glide.with(mContext).load(datum.getId()).into(holder.avatar);
+
+        holder.detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopupMenu(holder.detail);
+                index = position;
+            }
+        });
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Gson gson = new Gson();
+                Type type = new TypeToken<RegisterModel>(){}.getType();
+                String userInfo  = gson.toJson(myClasses.get(position),type);
+
+                Intent myClassDetail = new Intent(mContext, MyClassDetailActivity.class);
+                myClassDetail.putExtra("My-Class",userInfo);
+                mContext.startActivity(myClassDetail);
+
+            }
+        });
+
+    }
+
+    /**
+     * Showing popup menu when tapping on 3 dots
+     */
+    private void showPopupMenu(View view) {
+        // inflate menu
+        PopupMenu popup = new PopupMenu(mContext, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_album, popup.getMenu());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.show();
+    }
+
+    /**
+     * Click listener for popup menu items
+     */
+    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+
+
+        public MyMenuItemClickListener() {
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.delete:
+                    Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.edit:
+                    Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<RegisterModel>(){}.getType();
+                    String userInfo  = gson.toJson(myClasses.get(MyClassAdapter.index),type);
+
+                    Intent myClassEdit = new Intent(mContext, MyClassEditActivity.class);
+                    myClassEdit.putExtra("User_Info",userInfo);
+                    mContext.startActivity(myClassEdit);
+
+                    return true;
+                default:
+            }
+            return false;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return myClassModels.size();
+        return myClasses.size();
     }
 
     class MyClassViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.name) TextView tvName;
-        @BindView(R.id.description) TextView tvDescription;
+        @BindView(R.id.name) TextView name;
+        @BindView(R.id.email) TextView email;
+        @BindView(R.id.avatar) ImageView avatar;
+        @BindView(R.id.detail) ImageView detail;
+        @BindView(R.id.card_view) CardView cardView;
 
         public MyClassViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+
     }
 }

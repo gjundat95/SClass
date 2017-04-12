@@ -2,8 +2,8 @@ package com.tinhngo.sclassandroid.API;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tinhngo.sclassandroid.Model.MyClassModel;
-import com.tinhngo.sclassandroid.Model.Register2Model;
+import com.tinhngo.sclassandroid.Model.LoginModel;
+import com.tinhngo.sclassandroid.Model.RegisterModel;
 import com.tinhngo.sclassandroid.Model.ResponseModel;
 
 import java.util.List;
@@ -11,12 +11,11 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.PUT;
 
 /**
  * Created by ittin on 01/04/2017.
@@ -24,40 +23,26 @@ import retrofit2.http.Query;
 
 public interface ISClassApi {
 
-    @GET("api/v2.0/check")
-    Call<ResponseModel> checkToken();
-
-    @POST("api/v2.0/register")
-    @FormUrlEncoded
-    @Headers("Content-Type:application/x-www-form-urlencoded")
+    @POST("register")
+    @Headers("Content-Type:application/json")
     Call<ResponseModel> register(
-            @Query("token") String token,
-            @Field("first_name") String firstName,
-            @Field("last_name") String lastName,
-            @Field("email") String email,
-            @Field("password") String password,
-            @Field("repassword") String repassword,
-            @Field("sex") String sex,
-            @Field("phone") String phone,
-            @Field("birthday") String birthday,
-            @Field("description") String description,
-            @Field("address") String address,
-            @Field("company") String company,
-            @Field("relationships") String relationships,
-            @Field("phone_parent") String phoneParent,
-            @Field("token") String tokenNew
+            @Body RegisterModel registerModel
     );
 
-    @POST("api/v2.0/login")
-    @FormUrlEncoded
+    @POST("login")
+    @Headers("Content-Type:application/json")
     Call<ResponseModel> login(
-            @Query("token") String token,
-            @Field("email") String email,
-            @Field("password") String password
+            @Body LoginModel loginModel
     );
 
-    @GET("api/v2.0/user")
-    Call<Register2Model> getListUser(@Query("token") String token);
+    @GET("get-users")
+    Call<List<RegisterModel>> getListUser();
+
+    @PUT("update-user")
+    @Headers("Content-Type:application/json")
+    Call<ResponseModel> updateUser(
+            @Body RegisterModel registerModel
+    );
 
     class Factory{
         public static ISClassApi service;

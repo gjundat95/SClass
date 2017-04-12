@@ -12,7 +12,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tinhngo.sclassandroid.Common.TiSharedPreferences;
 import com.tinhngo.sclassandroid.R;
+import com.tinhngo.sclassandroid.View.Activity.Login.LoginActivity;
 import com.tinhngo.sclassandroid.View.Activity.MyClass.MyClassActivity;
 
 import butterknife.BindView;
@@ -46,7 +48,16 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.myclass:
                         Intent myClass = new Intent(MainActivity.this, MyClassActivity.class);
+                        drawerLayout.closeDrawers();
                         startActivity(myClass);
+                        break;
+                    case R.id.logout:
+                        TiSharedPreferences.removeSharedPreferences(MainActivity.this,"Token_Login");
+                        Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                        drawerLayout.closeDrawers();
+                        startActivity(login);
+                        finish();
+                        break;
                     case R.id.exit:
                         finish();
                         drawerLayout.closeDrawers();

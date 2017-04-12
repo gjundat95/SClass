@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.tinhngo.sclassandroid.Common.ProgressDialogLoading;
 import com.tinhngo.sclassandroid.Model.RegisterModel;
 import com.tinhngo.sclassandroid.Presenter.Register.IRegisterPresenter;
 import com.tinhngo.sclassandroid.Presenter.Register.PRegisterPresenter;
@@ -39,29 +41,28 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     @BindView(R.id.birthday) EditText etBirthday;
     @BindView(R.id.description) EditText etDescription;
     @BindView(R.id.address) EditText etAddress;
-    @BindView(R.id.company) EditText etCompany;
-    @BindView(R.id.relationships) EditText etRelationships;
-    @BindView(R.id.phoneparent) EditText etPhoneParent;
+    @BindView(R.id.btn_register) Button register;
 
+    private ProgressDialogLoading loading = new ProgressDialogLoading(this,"");
 
-    private String firstName, lastName, email, password, rePassword, sex, phone, birthday, description, address, company, relationships, phoneParent;
+    private String idUser, firstName, lastName, email, password, rePassword, sex, phone, birthday, description, address, avatar;
 
     @OnClick(R.id.btn_register)
     public void getTokenClick(){
         if(validate()){
+            loading.showProgressDialog();
             iRegisterPresenter.register(new RegisterModel(
+                    idUser = null,
                     firstName,
                     lastName,
                     email,
+                    password,
                     sex,
                     phone,
                     birthday,
                     description,
                     address,
-                    company,
-                    relationships,
-                    phoneParent,
-                    password
+                    avatar = ""
             ));
         }
     }
@@ -75,6 +76,12 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
     @Override
     public void success() {
+        loading.dismissProgressDialog();
+        Toast.makeText(
+                RegisterActivity.this,
+                "Register success",
+                Toast.LENGTH_LONG
+        ).show();
         Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(login);
         finish();
@@ -82,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
     @Override
     public void fail(String message) {
+        loading.dismissProgressDialog();
         Toast.makeText(
                 RegisterActivity.this,
                 message,
@@ -101,9 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         birthday = etBirthday.getText().toString();
         description = etDescription.getText().toString();
         address = etAddress.getText().toString();
-        company = etCompany.getText().toString();
-        relationships = etRelationships.getText().toString();
-        phoneParent = etPhoneParent.getText().toString();
+
 
         if(firstName.isEmpty()){
             etFirstName.setError("Please, enter first name");
@@ -165,25 +171,14 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         }else {
             etAddress.setError(null);
         }
-        if(company.isEmpty()){
-            etCompany.setError("Please, enter company");
-            isValid = false;
-        }else {
-            etCompany.setError(null);
-        }
-        if(relationships.isEmpty()){
-            etRelationships.setError("Please, enter relationships");
-            isValid = false;
-        }else {
-            etRelationships.setError(null);
-        }
+
         return isValid;
     }
 
     private void testData(){
-        etFirstName.setText("Bach");
-        etLastName.setText("Tuyet");
-        etEmail.setText("dogdog@gmail.com");
+        etFirstName.setText("Admin");
+        etLastName.setText("Adam");
+        etEmail.setText("admin@gmail.com");
         etPassword.setText("123456");
         etRePassword.setText("123456");
         etSex.setText("1");
@@ -191,9 +186,6 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         etBirthday.setText("01011995");
         etDescription.setText("No Comment");
         etAddress.setText("Thai Nguyen");
-        etCompany.setText("Thai Nguyen Entertainment");
-        etRelationships.setText("0");
-        etPhoneParent.setText("03023842882");
 
     }
 

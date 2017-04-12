@@ -1,7 +1,6 @@
 package com.tinhngo.sclassandroid.View.Activity.MyClass;
 
-import com.tinhngo.sclassandroid.Model.MyClassModel;
-import com.tinhngo.sclassandroid.Model.Register2Model;
+import com.tinhngo.sclassandroid.Model.RegisterModel;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
 
 public interface IMyClassView {
 
-    void getListUser(List<Register2Model.Data.Users.Datum> myClassModels);
-    void getListUserFail(String message);
+    void getListUser(List<RegisterModel> registerModels);
+    void fail(String message);
 
 }
