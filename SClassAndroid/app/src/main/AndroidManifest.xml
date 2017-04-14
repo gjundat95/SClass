@@ -24,16 +24,24 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.Activity.Register.RegisterActivity"
+            android:label="Register"
             android:theme="@style/AppTheme.Login" />
         <activity
             android:name=".View.Activity.MyClassDetail.MyClassDetailActivity"
+            android:label="Detail"
             android:theme="@style/AppTheme.MyClassDetail" />
         <activity
             android:name=".View.Activity.MyClass.MyClassActivity"
+            android:label="MyClass"
             android:theme="@style/AppTheme.MyClass" />
         <activity
             android:name=".View.Activity.MyClassEdit.MyClassEditActivity"
-            android:theme="@style/AppTheme.MyClassDetail"
+            android:label="Edit"
+            android:theme="@style/AppTheme.MyClassDetail" />
+        <activity
+            android:name=".View.Activity.NewDetail.NewDetailActivity"
+            android:label="New Detail"
+            android:theme="@style/AppTheme.NewDetail"
             />
     </application>
 

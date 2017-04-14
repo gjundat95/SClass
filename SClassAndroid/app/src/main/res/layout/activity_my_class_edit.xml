@@ -107,7 +107,7 @@
             android:id="@+id/birthday"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="number"
+            android:inputType="date"
             android:hint="Birthday"
             android:textAlignment="center"
             android:textStyle="normal"
@@ -153,6 +153,7 @@
             android:id="@+id/btn_save"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
+            android:textColor="@color/colorWhite"
             android:text="Save"
             android:background="@drawable/radius_button"
             />
@@ -166,6 +167,7 @@
             android:text="Have account yet? Login"
             android:gravity="center"
             android:textSize="16dip"
+            android:textColor="@color/colorWhite"
             tools:ignore="HardcodedText,SpUsage" />
 
     </LinearLayout>

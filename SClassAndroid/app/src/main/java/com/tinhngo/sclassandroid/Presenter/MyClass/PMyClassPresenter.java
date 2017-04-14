@@ -1,11 +1,14 @@
 package com.tinhngo.sclassandroid.Presenter.MyClass;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.tinhngo.sclassandroid.API.ISClassApi;
 import com.tinhngo.sclassandroid.Common.TiSharedPreferences;
 import com.tinhngo.sclassandroid.Model.RegisterModel;
+import com.tinhngo.sclassandroid.Model.ResponseModel;
 import com.tinhngo.sclassandroid.View.Activity.MyClass.IMyClassView;
+import com.tinhngo.sclassandroid.View.Activity.MyClass.MyClassActivity;
 
 import java.util.List;
 
@@ -52,4 +55,27 @@ public class PMyClassPresenter implements IMyClassPresenter {
         });
     }
 
+    @Override
+    public void delete(String id) {
+        ISClassApi.Factory.getInstance().deleteUser(id).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(response.isSuccessful()){
+                    ResponseModel responseModel = response.body();
+                    if(responseModel.isSuccess()){
+                        iMyClassView.deleteSuccess();
+                    }else {
+                        iMyClassView.fail("Error: "+responseModel.getMessage());
+                    }
+                }else {
+                    iMyClassView.fail("Error: "+response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                iMyClassView.fail("Error: "+t.getLocalizedMessage());
+            }
+        });
+    }
 }

@@ -1,4 +1,4 @@
-package com.tinhngo.sclassandroid.View.Activity.MyClass.Adpater;
+package com.tinhngo.sclassandroid.View.Activity.MyClass.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +26,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by ittin on 01/04/2017.
@@ -36,13 +35,14 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.MyClassV
 
     private LayoutInflater layoutInflater;
     private Context mContext;
+    private MyClassListener myClassListener;
+
     private List<RegisterModel> myClasses;
-    public static int index;
 
     public MyClassAdapter(Context context, List<RegisterModel> myClasses) {
         this.mContext = context;
         this.myClasses = myClasses;
-
+        this.myClassListener = (MyClassListener) mContext;
         this.layoutInflater = LayoutInflater.from(context);
 
     }
@@ -70,8 +70,7 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.MyClassV
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(holder.detail);
-                index = position;
+                showPopupMenu(holder.detail, position);
             }
         });
 
@@ -95,12 +94,12 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.MyClassV
     /**
      * Showing popup menu when tapping on 3 dots
      */
-    private void showPopupMenu(View view) {
+    private void showPopupMenu(View view,int position) {
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_album, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener(position));
         popup.show();
     }
 
@@ -109,22 +108,27 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.MyClassV
      */
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
 
+        private int postition;
 
         public MyMenuItemClickListener() {
+        }
+
+        public MyMenuItemClickListener(int postition) {
+            this.postition = postition;
         }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.delete:
-                    Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
+
+                    myClassListener.onListenerDelete(postition);
                     return true;
                 case R.id.edit:
-                    Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
 
                     Gson gson = new Gson();
                     Type type = new TypeToken<RegisterModel>(){}.getType();
-                    String userInfo  = gson.toJson(myClasses.get(MyClassAdapter.index),type);
+                    String userInfo  = gson.toJson(myClasses.get(postition),type);
 
                     Intent myClassEdit = new Intent(mContext, MyClassEditActivity.class);
                     myClassEdit.putExtra("User_Info",userInfo);
@@ -155,5 +159,9 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.MyClassV
             ButterKnife.bind(this,itemView);
         }
 
+    }
+
+    public interface MyClassListener {
+        void onListenerDelete(int i);
     }
 }

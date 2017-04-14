@@ -7,4 +7,6 @@ package com.tinhngo.sclassandroid.Presenter.MyClass;
 public interface IMyClassPresenter {
 
     void getListUser();
+    void delete(String id);
+
 }

@@ -138,7 +138,7 @@
             android:id="@+id/birthday"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="number"
+            android:inputType="date"
             android:hint="Birthday"
             android:textAlignment="center"
             android:textStyle="normal"

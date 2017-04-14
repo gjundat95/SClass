@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        testData();
+        //testData();
     }
 
     @BindView(R.id.first_name) EditText etFirstName;
@@ -181,9 +181,9 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         etEmail.setText("admin@gmail.com");
         etPassword.setText("123456");
         etRePassword.setText("123456");
-        etSex.setText("1");
+        etSex.setText("0");
         etPhone.setText("09747682980");
-        etBirthday.setText("01011995");
+        etBirthday.setText("1995/02/20");
         etDescription.setText("No Comment");
         etAddress.setText("Thai Nguyen");
 

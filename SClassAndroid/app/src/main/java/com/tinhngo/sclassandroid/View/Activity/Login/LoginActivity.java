@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         checkLogin();
-        testData();
+        //testData();
     }
 
     private PLoginPresenter pLoginPresenter = new PLoginPresenter(this,this);
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         loading.dismissProgressDialog();
         Toast.makeText(
                 LoginActivity.this,
-                "LoginModel Fail: "+message,
+                message,
                 Toast.LENGTH_LONG
         ).show();
     }

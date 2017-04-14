@@ -8,14 +8,13 @@
     tools:context="com.tinhngo.sclassandroid.View.Activity.Main.MainActivity"
     tools:showIn="@layout/activity_main"
     android:id="@+id/content_main"
-    >
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="24sp"
-        android:text="Navigation Drawer" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="?attr/actionBarSize"
+        />
 
 </RelativeLayout>

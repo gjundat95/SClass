@@ -11,4 +11,5 @@ public class GpsGroupApplication {
 		SpringApplication.run(GpsGroupApplication.class, args);
 
 	}
+
 }

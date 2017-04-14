@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:id="@+id/scroll_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    >
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_new_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="7dp"
+        tools:context="com.tinhngo.sclassandroid.View.Activity.NewDetail.NewDetailActivity">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="Hữu Thắng sang Đức cùng U20 Việt Nam, Rijkaard ứng cử ghế HLV tuyển Thái Lan"
+            />
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:text="Tinh Ngo"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_toRightOf="@+id/author"
+            android:text="1995/02/20 09:50:00"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/author"
+            android:text="(VietQ.vn) - Mới đây, Tổ chức Y tế thế giới (WHO) đã đưa ra lời kêu gọi cùng cảnh báo tình trạng nguồn nước nhiễm khuẩn đang đe dọa trực tiếp gần 2 tỷ người trên thế giới."
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            />
+        <ImageView
+            android:id="@+id/image_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description"
+            android:src="@drawable/cover"
+            android:padding="2dp"
+            />
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_large"
+            android:textSize="18dp"
+            android:text="Báo điện tử VTV đưa tin, trong bối cảnh hiện có gần 2 tỷ người trên thế giới đang uống nước nhiễm khuẩn, mỗi năm trên thế giới có hàng trăm nghìn người tử vong do buộc phải uống nước nhiễm khuẩn, ngày 12/4, Tổ chức Y tế thế giới (WHO) kêu gọi, cộng đồng quốc tế cần tăng cường đầu tư về tài chính cũng như thúc đẩy mọi biện pháp cần thiết để đảm bảo người dân trên toàn thế giới được tiếp cận với nguồn nước sạch và hệ thống vệ sinh an toàn."
+            />
+
+    </RelativeLayout>
+</ScrollView>
+

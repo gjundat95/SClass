@@ -12,5 +12,6 @@ public interface IMyClassView {
 
     void getListUser(List<RegisterModel> registerModels);
     void fail(String message);
+    void deleteSuccess();
 
 }

@@ -8,8 +8,8 @@ public class ConfigApi {
 
     public static final String BASE_URL = "http://45.55.77.182:8888/";
     public static final String LOCALHOST = "http://192.168.200.102/sclass/public/";
-    public static final String SPRING = "http://192.168.200.102:8080/";
-    public static final String LAB = "http://192.168.137.17:8080/";
+    public static final String SPRING_HOME = "http://192.168.200.102:8080/";
+    public static final String LAB = "http://192.168.137.1:8080/";
 
     public static String getBaseUrl(){
         return LAB;
